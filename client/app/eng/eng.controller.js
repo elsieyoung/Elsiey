@@ -4,13 +4,29 @@ angular.module('elsieyApp')
   .controller('EngCtrl', function ($scope, Restangular, $stateParams, $state) {
     $scope.maxPosts = 2;
     $scope.posts = [];
+    $scope.comments = [];
 
+    $scope.comment = {
+      author: "",
+      body:""
+    };
+
+    $scope.getComments = function (ind) {
+      Restangular.all('api/things/comment/' + ind).getList().then(function (data) {
+        //alert(data);
+        var length = data.length;
+        for (var i = 0; i < length; i++){
+          $scope.comments.push({"ind":ind, "name": data[i].name, "comment":data[i].comment, "time":data[i].createdAt});
+        }
+      });
+    };
 
     // Current post
     $scope.cur_id = $stateParams.id;
 
     if ($scope.cur_id){
       $scope.isSelected = true;
+      $scope.getComments($scope.cur_id);
     } else{
       $scope.isSelected = false;
     }
@@ -26,7 +42,7 @@ angular.module('elsieyApp')
       });
     }
 
-    $scope.count();
+    //$scope.count();
 
     $scope.getBlog = function (ind) {
       Restangular.all('api/things/' + ind).getList().then(function (data) {
@@ -49,6 +65,16 @@ angular.module('elsieyApp')
       $state.go('eng', {id: setTab});
     };
 
+    $scope.submitComment = function () {
+      Restangular.all('/api/things/').post(
+        {name: $scope.comment.author, comment: $scope.comment.body, id: parseInt($scope.cur_id)}).then(
+        (function (data) {
+          window.location.reload();
+
+        }), function (err) {
+          alert("Comment error!");
+        });
+    }
 
     $scope.get_title = function(){
       var len = $scope.posts.length;

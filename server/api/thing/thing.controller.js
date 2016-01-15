@@ -42,7 +42,41 @@ exports.getArticle = function (req, res) {
     }
   });};
 
+exports.saveComments = function (req, res){
+  var name = req.body.name;
+  var comment = req.body.comment;
+  var ind = req.body.id;
 
+  var Comments = Parse.Object.extend('Comments');
+  var newComment = new Comments();
+  newComment.set('name', name);
+  newComment.set('comment', comment);
+  newComment.set('ind', ind);
+
+  newComment.save(null, {
+    success: function (comment) {
+      res.status(200).end();
+    },
+    error: function (comment, error) {
+      res.status(500).end();
+    }
+  });
+};
+
+exports.getComment = function(req, res) {
+  var Comments = Parse.Object.extend('Comments');
+  var commentsQuery = new Parse.Query(Comments);
+  commentsQuery.equalTo('ind', parseInt(req.params.id));
+
+  commentsQuery.find({
+    success: function(comments) {
+      res.json(comments);
+    },
+  }, function(err){
+    res.status(500).end();
+  });
+
+};
 //exports.getAllArticle = function (req, res) {
 //  var Article = Parse.Object.extend('Articles');
 //  var artQuery = new Parse.Query(Article);

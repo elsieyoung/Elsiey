@@ -145,9 +145,8 @@ ul.post-grid {
 
 .content {
   background: rgb(255, 255, 255);
-  left:280px;
-  top:20px;
-  width:77%;
+  left:24%;
+  width:73%;
   overflow:hidden;
   position:relative;
   padding:20px 40px 20px;
@@ -193,16 +192,33 @@ ul.post-grid {
 
 
 .comments {
+  .comment-title {
+    padding-top:20px;
+    padding-bottom:20px;
+    color:black;
+    text-align: left;
+    font-size: 30px;
+  }
+
+
   ul {
-    margin:0;
+    color:black;
     padding:0;
     li {
+      margin-top: 20px;
+      text-align: left;
       list-style-type:none;
-      padding:20px 5px;
+      font-size: 18px;
       border-bottom:1px #5abc8a solid;
+
+      .comment-name {
+        color:grey;
+        padding:10px 0;
+      }
     }
   }
 }
+
 
 .post.ng-hide {
   opacity:0;
