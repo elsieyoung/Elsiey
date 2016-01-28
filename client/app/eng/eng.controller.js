@@ -3,13 +3,50 @@
 angular.module('elsieyApp')
   .controller('EngCtrl', function ($scope, Restangular, $stateParams, $state) {
     $scope.maxPosts = 2;
+    $scope.maxGallery = 8;
     $scope.posts = [];
     $scope.comments = [];
+    $scope.gallery = [];
+    $scope.captions = [
+      '2014 @ LA',
+      '2014 @ Route101',
+      '2015 @ HK',
+      '2016 @ Nara',
+      '2014 @ BJ',
+      '2013 @ Toronto',
+      '2015 @ BJ',
+      '2014 @ Toronto'
+    ];
+
+    for (var i = 0; i < $scope.maxGallery; i++) {
+      $scope.gallery.push(i);
+    }
+
+    $scope.hover = function(pic) {
+      $("#caption" + pic).css("visibility","visible");
+      $("#caption" + pic).css("opacity","1");
+      $("#caption" + pic).html("<p style='color: white; margin-top: 45%;'>" + $scope.captions[pic] + "</p>");
+    };
+
+    $scope.leave = function(pic) {
+      $("#caption" + pic).css("visibility","invisible");
+      $("#caption" + pic).css("opacity","0");
+    };
 
     $scope.comment = {
       author: "",
       body:""
     };
+
+    $scope.isBlog = false;
+
+    $scope.selectBlog = function (){
+      $scope.isBlog = true;
+    }
+
+    $scope.selectGallery = function (){
+      $scope.isBlog = false;
+    }
 
     $scope.getComments = function (ind) {
       Restangular.all('api/things/comment/' + ind).getList().then(function (data) {

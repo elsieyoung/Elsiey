@@ -9,92 +9,118 @@
   margin-top:100px;
   border-width: 1.5px;">
 
-<div class="btns">
-  <button class="btn" ><a href="http://soupzai.tumblr.com/tagged/Illustration#_=_"
-                          style="text-decoration: none; color: #fff;">ARTWORK</a></button>
-  <button class="btn" ><a href="https://github.com/elsieyoung"
-                          style="text-decoration: none; color: #fff;">GITHUB</a></button>
-  <button class="btn" ng-click="email()">EMAIL</button><br/>
-
-</div>
-
-
 
 <div class="sidebar">
 
   <div class="intro">
+    <div class="btns">
+      <button class="btn" ><a href="http://soupzai.tumblr.com/tagged/Illustration#_=_" target="_blank"
+                              style="text-decoration: none; color: #fff;">ARTWORK</a></button> <br/>
+      <button class="btn" ><a href="https://github.com/elsieyoung" target="_blank"
+                              style="text-decoration: none; color: #fff;">GITHUB</a></button>  <br/>
+      <button class="btn" ng-click="email()">EMAIL</button><br/>
+
+    </div>
+
     <div class="logo">
       <img src="assets/images/profile_photo.png" width="100px"/>
     </div>
-    <p style="font-weight: bold;">Elsie Yueti Yang</p>
-    <p style="font-style: oblique;">Undergraduate computer science student at University of Toronto</p>
+    <!--<p style="font-weight: bold;">Elsie Yueti Yang</p>-->
+    <!--<p>Undergraduate CS student at University of Toronto</p>-->
+
+    <br/>
+    <div class="nav">
+      <a ng-click="selectBlog()">←Blog</a><br/>
+      <a ng-click="selectGallery()">Gallery→</a>
+    </div>
+
+    <div class="footer">© elsie yueti yang / 2016</div>
   </div>
 
 </div>
 
 
 <div class="content">
-  <ul class="post-grid" ng-if="isSelected == false">
-    <li ng-repeat="post in posts | orderBy : 'ind'" class="col-s-4">
-      <h3 ng-click="selectTab(post.ind)">{{post.title}}</h3>
-      <cite>On {{post.time | date}}</cite><br/><br/><br/>
-      <p class="post-grid-body">{{post.blog | limitTo:70}}</p><br/><br/>
-      <!--<p class="fa fa-comment push-left"> {{comments.length}}-->
-      <!--</p>-->
-      <!--<p class="fa fa-heart push-right"> {{likes}}-->
-      <!--</p>-->
-      <a ng-click="selectTab(post.ind)" class="read-more-link">
-        Read More
-      </a><br/><br/>
-    </li>
-  </ul>
-
-  <div class="post" ng-if="isSelected == true">
-    <div class="back">
-      <button class="btn" ng-click="goBack()">BACK</button>
-    </div>
-    <div>
-      <h3>{{get_title()}}</h3>
-
-      <!--<img src="{{image}}" ng-show="{{image}}"/>-->
-      <cite>On {{get_time() | date}}</cite><br/><br/><br/>
-      <div>
-        <p class="post-body">{{get_blog()}}</p><br/><br/><br/>
-        <div class="sep"></div>
-        <!--<p ng-repeat="paragraph in body">-->
-        <!--{{paragraph}}-->
-        <!--</p>-->
-      </div>
-    </div>
-
-    <div class="comments">
-      <div class="comment-title">Comments</div><br/>
-      <ul>
-        <li ng-repeat="comment in comments">
-            <div>"{{comment.comment}}"</div>
-            <div class="comment-name">- <b>{{comment.name}} On {{comment.time | date}}</b></div>
-        </li>
-      </ul>
-      <br/>
-
-      <form name="commentForm" ng-submit="commentForm.$valid" novalidate>
-
-
-
-        <textarea ng-model="comment.body" cols="30" rows="10" required></textarea>
-        <label>by:</label>
-
-        <input type="text" ng-model="comment.author" required
-               placeholder="Name"/>
-        <br/>
-        <div class="submit-btn">
-          <button class="btn" ng-click="submitComment()">SUBMIT</button>
+  <div class="gallery">
+    <div class="photo-grid" ng-if="isBlog == false">
+        <div ng-repeat="pic in gallery"
+             class="thumb"
+             style="display: inline-block;
+                margin-right: 15px;
+                margin-bottom: 15px;"
+             ng-mouseenter="hover(pic)" ng-mouseleave="leave(pic)">
+          <div id="caption{{pic}}" class="caption">
+          </div>
+          <img src="assets/images/gallery/{{pic}}.jpg"/>
         </div>
 
-      </form>
     </div>
-
   </div>
+
+  <div class="blog" ng-if="isBlog == true">
+    <ul class="post-grid" ng-if="isSelected == false">
+      <li ng-repeat="post in posts | orderBy : 'ind'" class="col-s-4">
+        <h3 ng-click="selectTab(post.ind)">{{post.title}}</h3>
+        <cite>On {{post.time | date}}</cite><br/><br/><br/>
+        <p class="post-grid-body">{{post.blog | limitTo:70}}</p><br/><br/>
+        <!--<p class="fa fa-comment push-left"> {{comments.length}}-->
+        <!--</p>-->
+        <!--<p class="fa fa-heart push-right"> {{likes}}-->
+        <!--</p>-->
+        <a ng-click="selectTab(post.ind)" class="read-more-link">
+          Read More
+        </a><br/><br/>
+      </li>
+    </ul>
+
+    <div class="post" ng-if="isSelected == true">
+      <div class="back">
+        <button class="btn" ng-click="goBack()">BACK</button>
+      </div>
+      <div>
+        <h3>{{get_title()}}</h3>
+
+        <!--<img src="{{image}}" ng-show="{{image}}"/>-->
+        <cite>On {{get_time() | date}}</cite><br/><br/><br/>
+        <div>
+          <p class="post-body">{{get_blog()}}</p><br/><br/><br/>
+          <div class="sep"></div>
+          <!--<p ng-repeat="paragraph in body">-->
+          <!--{{paragraph}}-->
+          <!--</p>-->
+        </div>
+      </div>
+
+      <div class="comments">
+        <div class="comment-title">Comments</div><br/>
+        <ul>
+          <li ng-repeat="comment in comments">
+            <div>"{{comment.comment}}"</div>
+            <div class="comment-name">- <b>{{comment.name}} On {{comment.time | date}}</b></div>
+          </li>
+        </ul>
+        <br/>
+
+        <form name="commentForm" ng-submit="commentForm.$valid" novalidate>
+
+
+
+          <textarea ng-model="comment.body" cols="30" rows="10" required></textarea>
+          <label>by:</label>
+
+          <input type="text" ng-model="comment.author" required
+                 placeholder="Name"/>
+          <br/>
+          <div class="submit-btn">
+            <button class="btn" ng-click="submitComment()">SUBMIT</button>
+          </div>
+
+        </form>
+      </div>
+
+    </div>
+  </div>
+
 
 </div>
 
