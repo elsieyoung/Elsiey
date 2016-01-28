@@ -4,7 +4,7 @@ angular.module('elsieyApp')
   .config(function ($stateProvider) {
     $stateProvider
       .state('eng', {
-        url: '/eng/:id',
+        url: '/eng?section/:id',
         templateUrl: 'app/eng/eng.html',
         controller: 'EngCtrl'
       });

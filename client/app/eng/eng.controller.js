@@ -11,7 +11,7 @@ angular.module('elsieyApp')
       '2014 @ LA',
       '2014 @ Route101',
       '2015 @ HK',
-      '2016 @ Nara',
+      '2015 @ Nara',
       '2014 @ BJ',
       '2013 @ Toronto',
       '2015 @ BJ',
@@ -41,11 +41,12 @@ angular.module('elsieyApp')
 
     $scope.selectBlog = function (){
       $scope.isBlog = true;
-      $state.go('eng', {'id': null});
+      $state.go('eng', {'section': 'blog', 'id': null});
     }
 
     $scope.selectGallery = function (){
       $scope.isBlog = false;
+      $state.go('eng', {'section': 'gallery', 'id': null});
     }
 
     $scope.getComments = function (ind) {
@@ -60,15 +61,21 @@ angular.module('elsieyApp')
 
     // Current post
     $scope.cur_id = $stateParams.id;
+    $scope.cur_sec = $stateParams.section;
 
-    if ($scope.cur_id){
+    if ($scope.cur_sec == 'gallery') {
+      $scope.isBlog = false;
+    } else if ($scope.cur_sec == 'blog') {
       $scope.isBlog = true;
-      $scope.isSelected = true;
-      $scope.getComments($scope.cur_id);
-    } else{
-      $scope.isBlog = true;
-      $scope.isSelected = false;
+      if ($scope.cur_id){
+        $scope.isSelected = true;
+        $scope.getComments($scope.cur_id);
+      } else{
+        $scope.isSelected = false;
+      }
     }
+
+
 
     $scope.email = function(){
       window.open('mailto:elsieyang93@gmail.com');
@@ -101,7 +108,7 @@ angular.module('elsieyApp')
 
 
     $scope.selectTab = function(setTab){
-      $state.go('eng', {id: setTab});
+      $state.go('eng', {section: 'blog', id: setTab});
     };
 
     $scope.submitComment = function () {
@@ -144,7 +151,7 @@ angular.module('elsieyApp')
 
     $scope.goBack = function(){
       $scope.isSelected = true;
-      $state.go('eng', {'id': null});
+      $state.go('eng', {'section' : 'blog', 'id': null});
     }
     //$scope.addPost = function(){
     //  $scope.post.createdOn = Date.now();
