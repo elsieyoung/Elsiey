@@ -67,6 +67,7 @@ angular.module('elsieyApp')
       $scope.isBlog = false;
     } else if ($scope.cur_sec == 'blog') {
       $scope.isBlog = true;
+      $(".content").css("padding", "20px 100px 60px 100px");
       if ($scope.cur_id){
         $scope.isSelected = true;
         $scope.getComments($scope.cur_id);
@@ -112,14 +113,20 @@ angular.module('elsieyApp')
     };
 
     $scope.submitComment = function () {
-      Restangular.all('/api/things/').post(
-        {name: $scope.comment.author, comment: $scope.comment.body, id: parseInt($scope.cur_id)}).then(
-        (function (data) {
-          window.location.reload();
+      if (!$scope.comment.author || !$scope.comment.body) {
+        alert ("Please fill in both your name and the comment!");
+      }
+      else {
+        Restangular.all('/api/things/').post(
+          {name: $scope.comment.author, comment: $scope.comment.body, id: parseInt($scope.cur_id)}).then(
+          (function (data) {
+            window.location.reload();
 
-        }), function (err) {
-          alert("Comment error!");
-        });
+          }), function (err) {
+            alert("Comment error!");
+          });
+      }
+
     }
 
     $scope.get_title = function(){

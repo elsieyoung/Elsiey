@@ -57,6 +57,8 @@
     </div>
   </div>
 
+
+
   <div class="blog" ng-if="isBlog == true">
     <ul class="post-grid" ng-if="isSelected == false">
       <li ng-repeat="post in posts | orderBy : 'ind'" class="col-s-4">
@@ -74,9 +76,7 @@
     </ul>
 
     <div class="post" ng-if="isSelected == true">
-      <div class="back">
-        <button class="btn" ng-click="goBack()">BACK</button>
-      </div>
+
       <div>
         <h3>{{get_title()}}</h3>
 
@@ -84,38 +84,57 @@
         <cite>On {{get_time() | date}}</cite><br/><br/><br/>
         <div>
           <p class="post-body">{{get_blog()}}</p><br/><br/><br/>
-          <div class="sep"></div>
-          <!--<p ng-repeat="paragraph in body">-->
-          <!--{{paragraph}}-->
-          <!--</p>-->
-        </div>
       </div>
+    </div>
+    </div>
 
-      <div class="comments">
-        <div class="comment-title">Comments</div><br/>
-        <ul>
-          <li ng-repeat="comment in comments">
-            <div>"{{comment.comment}}"</div>
-            <div class="comment-name">- <b>{{comment.name}} On {{comment.time | date}}</b></div>
-          </li>
-        </ul>
-        <br/><br/>
+    <br/>
 
-        <form name="commentForm" ng-submit="commentForm.$valid" novalidate>
+    <div class="back" ng-if="isSelected == true">
+      <img style="cursor: pointer;"
+           src="assets/images/back.svg"
+           width="5%" ng-click="goBack()"/>
+      <!--<button class="btn" ng-click="goBack()">BACK</button>-->
+    </div>
 
+    <h3 style="font-size: 30px;" ng-if="isSelected == true && comments.length > 0">Comments</h3>
+    <div class="comments" ng-if="isSelected == true && comments.length > 0">
 
-
-          <textarea ng-model="comment.body" cols="30" rows="10" required></textarea>
-          <br/>
-          <input type="text" ng-model="comment.author" required
-                 placeholder="Name"/>
-          <br/>
-          <div class="submit-btn">
-            <button class="btn" ng-click="submitComment()">SUBMIT</button>
+      <div class="comment-list" ng-repeat="comment in comments">
+        <div style="margin-top:30px; margin-bottom: 30px;">
+          <div class="comment-author">
+            <p class="comment-author-name">{{comment.name}}</p>
+            <p class="comment-post-time">{{comment.time | date}}</p>
           </div>
+          <div class="comment-content">"{{comment.comment}}"</div>
+        </div>
 
-        </form>
+        <!--<div class="comment-name">- <b>{{comment.name}} On {{comment.time | date}}</b></div>-->
       </div>
+
+      <br/><br/>
+    </div>
+
+    <br/>
+
+    <div class="leaveComment" ng-if="isSelected == true">
+      <h3 style="font-size: 30px">Leave A Comment</h3>
+      <form name="commentForm" ng-submit="commentForm.$valid" novalidate>
+
+        <textarea ng-model="comment.body" rows="10" placeholder="Hey..." tabindex="4" style="width:100%" required></textarea>
+
+        <input style="margin-top: 7px;" type="text" placeholder="Name" ng-model="comment.author" value="" size="22" tabindex="1">
+
+        <p><button class="submit-btn btn" ng-click="submitComment()">SUBMIT</button></p>
+
+
+      </form>
+    </div>
+
+
+
+    </div>
+
 
     </div>
   </div>

@@ -157,14 +157,30 @@ ul.post-grid {
   width:73%;
   overflow:hidden;
   position:relative;
-  padding:20px 40px 20px;
+  padding:20px 20px 20px 20px;
   text-align: center;
+
+
 }
 
+.back img {
+  position: fixed;
+  top:48%;
+  left:25%;
+  z-index: 100;
+  -moz-transition: all 0.2s;
+  -webkit-transition: all 0.2s;
+  transition: all 0.2s;
+}
 
+.back:hover img {
+  -webkit-filter: invert(100%);
+  filter: invert(100%);
+}
 
 .post {
   padding:20px;
+  background-color: whitesmoke;
   transition: background linear 0.5s;
   -webkit-transition:0.5s linear all;
   opacity:1;
@@ -174,21 +190,13 @@ ul.post-grid {
     color: black;
   }
 
-  .back {
-    position: relative;
-    top:0;
-    float:right;
-  }
-
 
   .post-body {
     text-align: left;
-    font-size:18px;
+    font-family: 'Roboto', sans-serif;
+    font-size:16px;
   }
 
-  .sep {
-    border-bottom: 2px dotted #dbdbdb;
-  }
 
   cite {
     float: left;
@@ -200,32 +208,54 @@ ul.post-grid {
 
 
 .comments {
-  .comment-title {
-    padding-top:20px;
-    padding-bottom:20px;
-    color:black;
-    text-align: left;
-    font-size: 30px;
-  }
+  width:100%;
+  height:auto;
+  background-color: whitesmoke;
+  padding: 0 20px 0 20px;
+
+  //.comment-title {
+  //  padding-top:20px;
+  //  padding-bottom:20px;
+  //  color:black;
+  //  text-align: left;
+  //  font-size: 30px;
+  //}
 
 
-  ul {
-    color:black;
-    padding:0;
-    li {
-      margin-top: 20px;
+    .comment-list {
       text-align: left;
       list-style-type:none;
-      font-size: 18px;
-      border-bottom:1px #333333 solid;
+      height: auto;
+      border-top:1px #dddddd dotted;
 
-      .comment-name {
-        color:grey;
-        padding:10px 0;
+
+      .comment-author {
+        width:25%;
+        font-size: 14px;
+
+        float: left;
+      }
+
+      .comment-author p {
+        margin: 0;
+        overflow: hidden;
+        font-weight: bold;
+      }
+
+      p.comment-author-name {
+        font-size: 14px;
+        line-height: 18px;
+      }
+
+      .comment-content {
+        font-size: 16px;
+        font-family: 'Roboto', sans-serif;
+        margin-left:30%;
+
+
       }
     }
   }
-}
 
 
 .post.ng-hide {
@@ -238,17 +268,27 @@ ul.post-grid {
 
 form {
   width:100%;
+
 }
 input, textarea {
-  color:black;
-  display:block;
-  width:70%;
-  padding:10px;
-  font-size:1.1em;
+  //color:black;
+  //display:block;
+  //width:70%;
+  //padding:10px;
+  //font-size:1.1em;
+  float:left;
+  outline-style: none;
+  font-size: 18px !important;
+  font-family: inherit;
+  padding: 5px 2px 5px 8px !important;
+  letter-spacing: normal;
+  color: #666 !important;
+  border: 3px solid #d2d2cd;
 }
 
 .submit-btn {
- float:left;
+  margin-left: 20px;
+  float:left;
 }
 
 img {
