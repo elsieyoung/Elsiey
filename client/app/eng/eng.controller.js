@@ -38,10 +38,10 @@ angular.module('elsieyApp')
       body:""
     };
 
-    $scope.isBlog = false;
 
     $scope.selectBlog = function (){
       $scope.isBlog = true;
+      $state.go('eng', {'id': null});
     }
 
     $scope.selectGallery = function (){
@@ -62,9 +62,11 @@ angular.module('elsieyApp')
     $scope.cur_id = $stateParams.id;
 
     if ($scope.cur_id){
+      $scope.isBlog = true;
       $scope.isSelected = true;
       $scope.getComments($scope.cur_id);
     } else{
+      $scope.isBlog = true;
       $scope.isSelected = false;
     }
 

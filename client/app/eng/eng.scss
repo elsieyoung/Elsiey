@@ -256,10 +256,7 @@ img {
 }
 
 .photo-grid {
-  position: relative;
   display: inline;
-  height: 2000px;
-  width: 700%;
 }
 
 .photo-grid img {
@@ -284,7 +281,7 @@ img {
   opacity: 0;
   background: rgba(0,0,0,0.5);
   position: absolute;
-  margin-left:-59px;
+  //margin-left:-59px;
   height: 353px;
   width: 353px;
   transition: visibility 0s, opacity 0.5s linear;
