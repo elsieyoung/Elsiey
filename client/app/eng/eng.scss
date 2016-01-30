@@ -113,9 +113,17 @@ ul.post-grid {
       //color:white;
 
     .post-grid-body {
+      font-family: 'Roboto', sans-serif;
       text-align: left;
       font-size:16px;
     }
+
+    .post-grid-body p{
+      font-family: 'Roboto', sans-serif;
+      text-align: left;
+      font-size:16px;
+    }
+
 
     h3 {
       text-align: left;
@@ -193,8 +201,13 @@ ul.post-grid {
     color: black;
   }
 
-
   .post-body {
+    text-align: left;
+    font-family: 'Roboto', sans-serif;
+    font-size:16px;
+  }
+
+  .post-body p{
     text-align: left;
     font-family: 'Roboto', sans-serif;
     font-size:16px;

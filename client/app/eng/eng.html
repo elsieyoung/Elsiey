@@ -64,7 +64,9 @@
       <li ng-repeat="post in posts | orderBy : 'ind'" class="col-s-4">
         <h3 ng-click="selectTab(post.ind)">{{post.title}}</h3>
         <cite>On {{post.time | date}}</cite><br/><br/><br/>
-        <p class="post-grid-body">{{post.blog | limitTo:70}}</p><br/><br/>
+        <p class="post-grid-body" ng-bind-html="post.abs"></p>
+
+        <br/>
         <!--<p class="fa fa-comment push-left"> {{comments.length}}-->
         <!--</p>-->
         <!--<p class="fa fa-heart push-right"> {{likes}}-->
@@ -83,7 +85,7 @@
         <!--<img src="{{image}}" ng-show="{{image}}"/>-->
         <cite>On {{get_time() | date}}</cite><br/><br/><br/>
         <div>
-          <p class="post-body">{{get_blog()}}</p><br/><br/><br/>
+          <p class="post-body" ng-bind-html="get_blog()"></p><br/><br/><br/>
       </div>
     </div>
     </div>

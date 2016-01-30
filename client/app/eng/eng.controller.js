@@ -91,16 +91,23 @@ angular.module('elsieyApp')
 
     //$scope.count();
 
-    $scope.getBlog = function (ind) {
+    $scope.loadBlog = function (ind) {
       Restangular.all('api/things/' + ind).getList().then(function (data) {
-        $scope.posts.push({"ind":ind, "title": data[0].title, "blog":data[0].blog, "time":data[0].createdAt});
+        $scope.posts.push({"ind":ind, "title": data[0].title, "abs":$scope.makeAbs(data[0].blog), "blog":data[0].blog, "time":data[0].createdAt});
       });
     };
 
+    $scope.makeAbs = function (blog) {
+      if (blog.length > 77) {
+        return blog.substring(3, 73).concat("...");
+      } else {
+        return blog;
+      }
+    }
 
     $scope.load = function () {
       for (var i = 1; i <= $scope.maxPosts; i++){
-        $scope.getBlog(i);
+        $scope.loadBlog(i);
       }
     };
 
