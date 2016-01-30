@@ -12,7 +12,5 @@ angular.module('elsieyApp', [
     $urlRouterProvider
       .otherwise('/');
 
-    app.use(favicon(__dirname + '/public/favicon.ico'));
-
     $locationProvider.html5Mode(true);
   });
