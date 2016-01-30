@@ -13,7 +13,7 @@ var _ = require('lodash');
 var config = require('../../config/environment');
 var Parse = require('parse/node').Parse;
 var async = require('async');
-Parse.initialize(config.PARSE_APPID, config.PARSE_JSKEY);
+Parse.initialize("h4fBz9LKOYSpyMkjDtSF6Pkf21QYiPUaWFbSg84l", "EXe1NsztkCdTdc9jn8GhRiFRBp4SkHOysFHVMDcm");
 
 exports.getCount = function (req, res) {
   var Article = Parse.Object.extend('Articles');
