@@ -3,7 +3,7 @@
 angular.module('elsieyApp')
   .controller('EngCtrl', function ($scope, Restangular, $stateParams, $state) {
     $scope.maxPosts = 2;
-    $scope.maxGallery = 8;
+    $scope.maxGallery = 10;
     $scope.posts = [];
     $scope.comments = [];
     $scope.gallery = [];
@@ -15,7 +15,9 @@ angular.module('elsieyApp')
       '2014 @ BJ',
       '2013 @ Toronto',
       '2015 @ BJ',
-      '2014 @ Toronto'
+      '2014 @ Toronto',
+      '2016 @ Amoy',
+      '2016 @ Gulangyu'
     ];
 
     for (var i = 0; i < $scope.maxGallery; i++) {
