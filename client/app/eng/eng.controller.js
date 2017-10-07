@@ -2,7 +2,9 @@
 
 angular.module('elsieyApp')
   .controller('EngCtrl', function ($scope, Restangular, $stateParams, $state) {
-    $scope.maxPosts = 2;
+    var creditsyear = new Date();
+    $scope.creditsyr = creditsyear.getFullYear();
+    $scope.maxPosts = 1;
     $scope.maxGallery = 10;
     $scope.posts = [];
     $scope.comments = [];
